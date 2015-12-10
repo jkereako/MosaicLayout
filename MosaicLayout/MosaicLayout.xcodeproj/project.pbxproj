@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		362375301C19F28100689E57 /* MosaicLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3623752F1C19F28100689E57 /* MosaicLayout.swift */; settings = {ASSET_TAGS = (); }; };
 		36BB7B9A1C19EF7B00AA2B2C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36BB7B991C19EF7B00AA2B2C /* AppDelegate.swift */; };
 		36BB7B9C1C19EF7B00AA2B2C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36BB7B9B1C19EF7B00AA2B2C /* ViewController.swift */; };
 		36BB7B9F1C19EF7B00AA2B2C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 36BB7B9D1C19EF7B00AA2B2C /* Main.storyboard */; };
@@ -34,6 +35,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3623752F1C19F28100689E57 /* MosaicLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MosaicLayout.swift; sourceTree = "<group>"; };
 		36BB7B961C19EF7B00AA2B2C /* MosaicLayout.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MosaicLayout.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		36BB7B991C19EF7B00AA2B2C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		36BB7B9B1C19EF7B00AA2B2C /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -103,6 +105,7 @@
 				36BB7BA01C19EF7B00AA2B2C /* Assets.xcassets */,
 				36BB7BA21C19EF7B00AA2B2C /* LaunchScreen.storyboard */,
 				36BB7BA51C19EF7B00AA2B2C /* Info.plist */,
+				3623752F1C19F28100689E57 /* MosaicLayout.swift */,
 			);
 			path = MosaicLayout;
 			sourceTree = "<group>";
@@ -255,6 +258,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				362375301C19F28100689E57 /* MosaicLayout.swift in Sources */,
 				36BB7B9C1C19EF7B00AA2B2C /* ViewController.swift in Sources */,
 				36BB7B9A1C19EF7B00AA2B2C /* AppDelegate.swift in Sources */,
 			);
@@ -485,6 +489,7 @@
 				36BB7BC01C19EF7B00AA2B2C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		36BB7BC11C19EF7B00AA2B2C /* Build configuration list for PBXNativeTarget "MosaicLayoutTests" */ = {
 			isa = XCConfigurationList;
@@ -493,6 +498,7 @@
 				36BB7BC31C19EF7B00AA2B2C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		36BB7BC41C19EF7B00AA2B2C /* Build configuration list for PBXNativeTarget "MosaicLayoutUITests" */ = {
 			isa = XCConfigurationList;
@@ -501,6 +507,7 @@
 				36BB7BC61C19EF7B00AA2B2C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
