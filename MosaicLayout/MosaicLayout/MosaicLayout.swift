@@ -433,35 +433,7 @@ extension MosaicLayout {
       }
     }
   }
-  /*
-  - (BOOL)traverseCellsBetweenBounds:(NSUInteger)start and:(NSUInteger)end block:(BOOL(^)(CGPoint))block {
-  NSUInteger unbound = 0;
-  NSUInteger bounds = 0;
 
-  for(unbound = start; unbound < end; unbound++) {
-  for(bounds = 0; bounds < self.maximumNumberOfItemsInBounds; bounds++) {
-
-  CGPoint point = CGPointZero;
-
-  switch (self.scrollDirection) {
-  case UICollectionViewScrollDirectionVertical:
-  point = CGPointMake(bounds, unbound);
-  break;
-
-  case UICollectionViewScrollDirectionHorizontal:
-  point = CGPointMake(unbound, bounds);
-  break;
-  }
-
-  if(!block(point)) {
-  return NO;
-  }
-  }
-  }
-
-  return YES;
-  }
-  */
   private func traverseOpenCells(closure: (position: CGPoint) -> Bool) -> Bool {
     var allTakenBefore = true
     var unboundIndex: UInt
@@ -508,6 +480,7 @@ extension MosaicLayout {
 
     } while(true)
   }
+  
   private func traverseCellsForPosition(point: CGPoint, withSize size: CGSize, closure: (point: CGPoint) -> Bool) -> Bool {
     var column: UInt = 0
     var row: UInt = 0
@@ -523,22 +496,4 @@ extension MosaicLayout {
 
     return true
   }
-  
-  /*
-  - (BOOL)traverseCellsForPosition:(CGPoint)point withSize:(CGSize)size block:(BOOL(^)(CGPoint))block {
-  NSUInteger column = 0;
-  NSUInteger row = 0;
-  
-  for(column = (NSUInteger)point.x; column < point.x + size.width; column++) {
-  for (row = (NSUInteger)point.y; row < point.y + size.height; row++) {
-  
-  if(!block(CGPointMake(column, row))) {
-  // Terminate iteration
-  return NO;
-  }
-  }
-  }
-  return YES;
-  }
-  */
 }
