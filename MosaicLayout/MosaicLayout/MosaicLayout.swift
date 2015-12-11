@@ -21,6 +21,7 @@ protocol MosaicLayoutDelegate: UICollectionViewDelegate {
 class MosaicLayout: UICollectionViewLayout {
   //-- Interface
   weak var delegate: MosaicLayoutDelegate?
+
   var preemptivelyRenderLayout: Bool
   var scrollDirection: UICollectionViewScrollDirection {
     didSet {
@@ -109,7 +110,10 @@ class MosaicLayout: UICollectionViewLayout {
 
     super.init(coder: aDecoder)
   }
+}
 
+// MARK:- UICollectionView Overrides
+extension MosaicLayout {
   override func collectionViewContentSize() -> CGSize {
     guard let cv = collectionView else {
       return CGSizeZero
@@ -308,7 +312,7 @@ extension MosaicLayout {
     let position: CGPoint
     // Check if the cell has a position
     if let p = positionByIndexPath[UInt(indexPath.section)]?[UInt(indexPath.row)] {
-        position = p.CGPointValue()
+      position = p.CGPointValue()
 
     }
 
@@ -480,11 +484,11 @@ extension MosaicLayout {
 
     } while(true)
   }
-  
+
   private func traverseCellsForPosition(point: CGPoint, withSize size: CGSize, closure: (point: CGPoint) -> Bool) -> Bool {
     var column: UInt = 0
     var row: UInt = 0
-
+    
     // O(n^2)
     for column = UInt(point.x); column < UInt(point.x + size.width); column++ {
       for row = UInt(point.y); row < UInt(point.y + size.height); column++ {
@@ -493,7 +497,7 @@ extension MosaicLayout {
         }
       }
     }
-
+    
     return true
   }
 }

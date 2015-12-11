@@ -19,20 +19,27 @@
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TmD-ZO-c9j">
                                 <rect key="frame" x="0.0" y="20" width="600" height="44"/>
                                 <items>
-                                    <barButtonItem systemItem="add" id="TqK-BF-4Pz"/>
-                                    <barButtonItem systemItem="trash" id="EYx-vN-TyD"/>
+                                    <barButtonItem systemItem="add" id="TqK-BF-4Pz">
+                                        <connections>
+                                            <action selector="addAction:" destination="BYZ-38-t0r" id="Z8f-Jg-KWO"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem systemItem="trash" id="EYx-vN-TyD">
+                                        <connections>
+                                            <action selector="removeAction:" destination="BYZ-38-t0r" id="7Eh-pi-wCT"/>
+                                        </connections>
+                                    </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="F0j-lU-1wc"/>
-                                    <barButtonItem systemItem="refresh" id="jry-mB-ArA"/>
+                                    <barButtonItem systemItem="refresh" id="jry-mB-ArA">
+                                        <connections>
+                                            <action selector="refreshAction:" destination="BYZ-38-t0r" id="NEC-jn-eMA"/>
+                                        </connections>
+                                    </barButtonItem>
                                 </items>
                             </toolbar>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="4y4-XA-s2A">
                                 <rect key="frame" x="0.0" y="64" width="600" height="536"/>
-                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="PyX-e9-rbL">
-                                    <size key="itemSize" width="50" height="50"/>
-                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                </collectionViewFlowLayout>
+                                <collectionViewLayout key="collectionViewLayout" id="Tj6-Jp-ugP" customClass="MosaicLayout" customModule="MosaicLayout" customModuleProvider="target"/>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="cell" id="V6H-91-Huh">
                                         <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
@@ -56,6 +63,10 @@
                                         </constraints>
                                     </collectionViewCell>
                                 </cells>
+                                <connections>
+                                    <outlet property="dataSource" destination="ltm-Bt-oWB" id="yhO-Mf-uOh"/>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="xmh-09-T0g"/>
+                                </connections>
                             </collectionView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -69,8 +80,13 @@
                             <constraint firstItem="TmD-ZO-c9j" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailing" id="m2O-xw-aiT"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="collectionView" destination="4y4-XA-s2A" id="1YM-0Q-mDc"/>
+                        <outlet property="viewModel" destination="ltm-Bt-oWB" id="KJi-3e-hEo"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <customObject id="ltm-Bt-oWB" customClass="ViewModel" customModule="MosaicLayout" customModuleProvider="target"/>
             </objects>
         </scene>
     </scenes>

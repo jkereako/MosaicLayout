@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		362375301C19F28100689E57 /* MosaicLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3623752F1C19F28100689E57 /* MosaicLayout.swift */; settings = {ASSET_TAGS = (); }; };
+		363173291C1B4C65008CFE79 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 363173281C1B4C65008CFE79 /* ViewModel.swift */; settings = {ASSET_TAGS = (); }; };
 		36BB7B9A1C19EF7B00AA2B2C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36BB7B991C19EF7B00AA2B2C /* AppDelegate.swift */; };
 		36BB7B9C1C19EF7B00AA2B2C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36BB7B9B1C19EF7B00AA2B2C /* ViewController.swift */; };
 		36BB7B9F1C19EF7B00AA2B2C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 36BB7B9D1C19EF7B00AA2B2C /* Main.storyboard */; };
@@ -36,6 +37,7 @@
 
 /* Begin PBXFileReference section */
 		3623752F1C19F28100689E57 /* MosaicLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MosaicLayout.swift; sourceTree = "<group>"; };
+		363173281C1B4C65008CFE79 /* ViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
 		36BB7B961C19EF7B00AA2B2C /* MosaicLayout.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MosaicLayout.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		36BB7B991C19EF7B00AA2B2C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		36BB7B9B1C19EF7B00AA2B2C /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -100,12 +102,13 @@
 			isa = PBXGroup;
 			children = (
 				36BB7B991C19EF7B00AA2B2C /* AppDelegate.swift */,
+				3623752F1C19F28100689E57 /* MosaicLayout.swift */,
 				36BB7B9B1C19EF7B00AA2B2C /* ViewController.swift */,
+				363173281C1B4C65008CFE79 /* ViewModel.swift */,
 				36BB7B9D1C19EF7B00AA2B2C /* Main.storyboard */,
 				36BB7BA01C19EF7B00AA2B2C /* Assets.xcassets */,
 				36BB7BA21C19EF7B00AA2B2C /* LaunchScreen.storyboard */,
 				36BB7BA51C19EF7B00AA2B2C /* Info.plist */,
-				3623752F1C19F28100689E57 /* MosaicLayout.swift */,
 			);
 			path = MosaicLayout;
 			sourceTree = "<group>";
@@ -260,6 +263,7 @@
 			files = (
 				362375301C19F28100689E57 /* MosaicLayout.swift in Sources */,
 				36BB7B9C1C19EF7B00AA2B2C /* ViewController.swift in Sources */,
+				363173291C1B4C65008CFE79 /* ViewModel.swift in Sources */,
 				36BB7B9A1C19EF7B00AA2B2C /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
