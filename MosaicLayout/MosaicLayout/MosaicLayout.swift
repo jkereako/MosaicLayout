@@ -87,7 +87,7 @@ class MosaicLayout: UICollectionViewLayout {
     cellSize = CGSizeMake(100.0, 100.0)
     layoutAttributesCache = [UICollectionViewLayoutAttributes]()
     layoutRectCache = CGRectZero
-    indexPathCache = NSIndexPath()
+    indexPathCache = NSIndexPath(forRow: 0, inSection: 0)
     firstOpenSpace = CGPointZero
     furthestCellPosition = CGPointZero
     indexPathByPosition = [UInt: [UInt: NSIndexPath]]()
@@ -102,7 +102,7 @@ class MosaicLayout: UICollectionViewLayout {
     cellSize = CGSizeMake(100.0, 100.0)
     layoutAttributesCache = [UICollectionViewLayoutAttributes]()
     layoutRectCache = CGRectZero
-    indexPathCache = NSIndexPath()
+    indexPathCache = NSIndexPath(forRow: 0, inSection: 0)
     firstOpenSpace = CGPointZero
     furthestCellPosition = CGPointZero
     indexPathByPosition = [UInt: [UInt: NSIndexPath]]()
@@ -249,7 +249,7 @@ extension MosaicLayout {
   override func invalidateLayout() {
     super.invalidateLayout()
 
-    indexPathCache = NSIndexPath()
+    indexPathCache = NSIndexPath(forRow: 0, inSection: 0)
     layoutAttributesCache = [UICollectionViewLayoutAttributes]()
     layoutRectCache = CGRectZero
     firstOpenSpace = CGPointZero
@@ -345,10 +345,85 @@ extension MosaicLayout {
   }
 }
 
+// MARK:- Setters
+extension MosaicLayout {
+  private func setPosition(position: CGPoint, forIndexPath indexPath: NSIndexPath) {
+    let unboundIndex, boundIndex: UInt
+
+    switch scrollDirection {
+    case .Vertical:
+      unboundIndex = UInt(position.y)
+      boundIndex = UInt(position.x)
+
+    case .Horizontal:
+      unboundIndex = UInt(position.x)
+      boundIndex = UInt(position.y)
+    }
+
+    if indexPathByPosition[boundIndex] == nil {
+      indexPathByPosition[boundIndex] = [UInt: NSIndexPath]()
+    }
+
+    indexPathByPosition[boundIndex]![unboundIndex] = indexPath
+  }
+
+  private func setIndexPath(indexPath: NSIndexPath, forPosition position: CGPoint) {
+    if positionByIndexPath[UInt(indexPath.section)] == nil {
+      positionByIndexPath[UInt(indexPath.section)] = [UInt: NSValue]()
+    }
+
+    positionByIndexPath[UInt(indexPath.section)]?[UInt(indexPath.row)] = NSValue(CGPoint: position)
+  }
+}
+
 // MARK:- Cell insertion
 extension MosaicLayout {
   private func insertCellAtIndexPath(indexPath: NSIndexPath) -> Bool {
-    return true;
+    return !traverseOpenCells({[unowned self] (let position: CGPoint) in
+      let didTraverseAllCells = self.traverseCellsForPosition(position,
+        withSize: self.cellSize,
+        closure: {[unowned self] (let aPosition: CGPoint) in
+          let hasSpaceAvailable: Bool = Bool(self.indexPathForPosition(aPosition) != nil)
+          var isInBounds: Bool = false
+          var hasMaximumBoundSize: Bool = false
+
+          switch self.scrollDirection {
+          case .Vertical:
+            isInBounds = (UInt(aPosition.x) < self.maximumNumberOfCellsInBounds);
+            hasMaximumBoundSize = (aPosition.x == 0);
+          case .Horizontal:
+            isInBounds = (UInt(aPosition.y) < self.maximumNumberOfCellsInBounds);
+            hasMaximumBoundSize = (aPosition.y == 0);
+          }
+
+          if hasSpaceAvailable && hasMaximumBoundSize && !isInBounds {
+            print("View is not large enough to hold cell... inserting anyway.")
+            return true
+          }
+
+          return (hasSpaceAvailable && isInBounds)
+        }
+      )
+
+      if !didTraverseAllCells {
+        return true
+      }
+
+      self.setIndexPath(indexPath, forPosition: position)
+
+      self.traverseCellsForPosition(position,
+        withSize: self.cellSize,
+        closure: {[unowned self] (let aPosition: CGPoint) in
+          self.setPosition(aPosition, forIndexPath: indexPath)
+          self.furthestCellPosition = aPosition
+
+          return true
+        }
+      )
+
+      return false
+      }
+    )
   }
 
   private func insertCellsToIndexPath(indexPath: NSIndexPath) {
@@ -481,10 +556,10 @@ extension MosaicLayout {
       }
 
       unboundIndex++
-
+      
     } while(true)
   }
-
+  
   private func traverseCellsForPosition(point: CGPoint, withSize size: CGSize, closure: (point: CGPoint) -> Bool) -> Bool {
     var column: UInt = 0
     var row: UInt = 0
