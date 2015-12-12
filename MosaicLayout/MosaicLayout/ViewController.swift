@@ -36,7 +36,6 @@ class ViewController: UIViewController {
 // MARK:- UICollectionViewDelegate
 extension ViewController: UICollectionViewDelegate {
   func collectionView(collectionView: UICollectionView, didDeselectItemAtIndexPath indexPath: NSIndexPath) {
-
     guard !animating else {
       return
     }
@@ -75,7 +74,9 @@ extension ViewController {
 
     viewModel?.collectionView(cv,
       addIndexPath: visibleItems.first ?? NSIndexPath(forRow: 0, inSection: 0),
-      completion: { [unowned self] in self.animating = false }
+      completion: { [unowned self] in
+        self.animating = false
+      }
     )
   }
 
@@ -111,7 +112,7 @@ extension ViewController {
 extension ViewController {
   private func colorForInteger(integer: UInt) -> UIColor {
     return UIColor(
-      hue: CGFloat(((19 * integer) % 255) / 255),
+      hue: ((19.0 * CGFloat(integer)) % 255.0) / 255.0,
       saturation: 1.0,
       brightness: 1.0,
       alpha: 1.0

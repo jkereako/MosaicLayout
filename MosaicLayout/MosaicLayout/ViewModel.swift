@@ -61,8 +61,7 @@ class ViewModel: NSObject {
   }
 
   func collectionView(cv: UICollectionView, addIndexPath indexPath: NSIndexPath, completion: (Void) -> Void ) {
-
-    guard indexPath.row > numbers.count else {
+    guard indexPath.row < numbers.count else {
       return
     }
 
@@ -81,7 +80,6 @@ class ViewModel: NSObject {
   }
 
   func collectionView(cv: UICollectionView, removeIndexPath indexPath: NSIndexPath, completion: (Void) -> Void) {
-
     guard numbers.count > 0 && indexPath.row < numbers.count else {
       return
     }
