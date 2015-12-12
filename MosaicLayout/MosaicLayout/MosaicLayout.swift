@@ -271,7 +271,7 @@ extension MosaicLayout {
 
     let position = positionForIndexPath(indexPath)
     let aCellSize = sizeForCellAtIndexPath(indexPath)
-    var padding: CGFloat = 0.0
+    let padding: CGFloat
     let contentRect = UIEdgeInsetsInsetRect(cv.frame, cv.contentInset)
     let result: CGRect
 
@@ -308,7 +308,6 @@ extension MosaicLayout {
     }
 
     return CGSizeMake(1.0, 1.0)
-
   }
 
   private func positionForIndexPath(indexPath: NSIndexPath) -> CGPoint {
