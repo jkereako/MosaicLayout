@@ -23,8 +23,29 @@ class ViewController: UIViewController {
         return
     }
 
+    switch UIScreen.mainScreen().bounds.size {
+
+      // 4s
+    case CGSizeMake(320.0, 480.0):
+      layout.cellSize = CGSizeMake(40.0, 40.0)
+
+      // 5 and 5s
+    case CGSizeMake(320.0, 568.0):
+      layout.cellSize = CGSizeMake(53.3, 53.3)
+
+      // 6 and 6s
+    case CGSizeMake(375.0, 667.0):
+      layout.cellSize = CGSizeMake(62.5, 62.5)
+
+      // 6 Plus and 6s plus
+    case CGSizeMake(414.0, 736.0):
+      layout.cellSize = CGSizeMake(82.8, 82.8)
+
+    default:
+      layout.cellSize = CGSizeMake(40.0, 40.0)
+    }
+
     layout.scrollDirection = .Vertical
-    layout.cellSize = CGSizeMake(75.0, 75.0)
     layout.preemptivelyRenderLayout = false
     layout.delegate = model
 

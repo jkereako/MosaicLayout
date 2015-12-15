@@ -53,7 +53,7 @@ class ViewModel: NSObject {
     cellHeights = [UInt]()
 
     // Assign new values
-    for i in 0...15 {
+    for i in 1...24 {
       numbers.append(UInt(i))
       cellWidths.append(randomInteger)
       cellHeights.append(randomInteger)
