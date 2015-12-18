@@ -70,7 +70,7 @@ class MosaicLayout: UICollectionViewLayout {
     case .Vertical:
       size = UInt(CGRectGetWidth(contentRect) / cellSize.width)
     case .Horizontal:
-      size = UInt(CGRectGetWidth(contentRect) / cellSize.height)
+      size = UInt(CGRectGetHeight(contentRect) / cellSize.height)
     }
 
     if size == 0 {
@@ -126,7 +126,7 @@ extension MosaicLayout {
     case .Vertical:
       size = CGSizeMake(CGRectGetWidth(contentRect), (furthestCellPosition.y + 1) * cellSize.height)
     case .Horizontal:
-      size = CGSizeMake((furthestCellPosition.x + 1) * cellSize.width, CGRectGetWidth(contentRect))
+      size = CGSizeMake((furthestCellPosition.x + 1) * cellSize.width, CGRectGetHeight(contentRect))
     }
 
     return size
@@ -217,7 +217,7 @@ extension MosaicLayout {
       unboundIndex = Int((CGRectGetMaxY(scrollFrame) / cellSize.height) + 1)
 
     case .Horizontal:
-      unboundIndex = Int((CGRectGetMaxY(scrollFrame) / cellSize.width) + 1)
+      unboundIndex = Int((CGRectGetMaxX(scrollFrame) / cellSize.width) + 1)
     }
 
     if (preemptivelyRenderLayout) {
