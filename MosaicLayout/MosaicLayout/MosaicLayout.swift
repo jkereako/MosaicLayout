@@ -39,10 +39,13 @@ class MosaicLayout: UICollectionViewLayout {
   var firstOpenSpace: CGPoint
   var furthestCellPosition: CGPoint {
     didSet {
-      furthestCellPosition = CGPointMake(
-        max(furthestCellPosition.x, oldValue.x),
-        max(furthestCellPosition.y, oldValue.y)
-      );
+      // Allow the property to be reset to zero
+      if furthestCellPosition != CGPointZero {
+        furthestCellPosition = CGPointMake(
+          max(furthestCellPosition.x, oldValue.x),
+          max(furthestCellPosition.y, oldValue.y)
+        )
+      }
     }
   }
 
@@ -254,6 +257,7 @@ extension MosaicLayout {
 
     indexPathCache = NSIndexPath(forRow: 0, inSection: 0)
     layoutAttributesCache = [UICollectionViewLayoutAttributes]()
+    furthestCellPosition = CGPointZero
     layoutRectCache = CGRectZero
     firstOpenSpace = CGPointZero
     indexPathByPosition = [Int: [Int: NSIndexPath]]()
