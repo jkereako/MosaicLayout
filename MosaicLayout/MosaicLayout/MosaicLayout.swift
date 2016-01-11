@@ -167,15 +167,24 @@ extension MosaicLayout {
 
     var attributes = Set<UICollectionViewLayoutAttributes>()
 
-    traverseCellsBetweenBounds(start: unboundIndexStart, end: unboundIndexEnd,
-      closure: {[unowned self] (let position: CGPoint) in
-        // Unwrap all the things
+    // O(n^2)
+    for var unboundIndex = unboundIndexStart; unboundIndex < unboundIndexEnd; unboundIndex++ {
+      for var boundIndex = 0; boundIndex < Int(maximumNumberOfCellsInBounds); boundIndex++ {
+        var position: CGPoint
+
+        switch scrollDirection {
+        case .Vertical:
+          position = CGPointMake(CGFloat(boundIndex), CGFloat(unboundIndex))
+        case .Horizontal:
+          position = CGPointMake(CGFloat(unboundIndex), CGFloat(boundIndex))
+        }
+
         if let indexPath = self.indexPathForPosition(position),
           let attribute = self.layoutAttributesForItemAtIndexPath(indexPath) {
             attributes.insert(attribute)
         }
       }
-    )
+    }
 
     // Cache the attributes
     layoutAttributesCache = Array(attributes)
@@ -504,27 +513,6 @@ extension MosaicLayout {
 
 //MARK:- Cell traversal
 extension MosaicLayout {
-  private func traverseCellsBetweenBounds(start start: Int, end: Int, closure: (position: CGPoint) -> Void) {
-    var boundIndex, unboundIndex: Int
-
-    // O(n^2)
-    for unboundIndex = start; unboundIndex < end; unboundIndex++ {
-      for boundIndex = 0; boundIndex < Int(maximumNumberOfCellsInBounds); boundIndex++ {
-        var position: CGPoint
-
-        switch scrollDirection {
-        case .Vertical:
-          position = CGPointMake(CGFloat(boundIndex), CGFloat(unboundIndex))
-        case .Horizontal:
-          position = CGPointMake(CGFloat(unboundIndex), CGFloat(boundIndex))
-        }
-
-        // Invoke the callback
-        closure(position: position)
-      }
-    }
-  }
-
   private func traverseOpenCells(closure: (position: CGPoint) -> Bool) -> Bool {
     var allTakenBefore = true
     var unboundIndex: UInt
