@@ -459,7 +459,7 @@ extension MosaicLayout {
     for section = indexPathCache.section; section < sectionCount; section++ {
       let rowCount = cv.numberOfItemsInSection(section)
 
-      for row = indexPathCache.row + 1; row < rowCount; row++ {
+      for row = indexPathCache.row; row < rowCount; row++ {
 
         // Return if we are past the desired row
         if section >= indexPath.section && row > indexPath.row {
