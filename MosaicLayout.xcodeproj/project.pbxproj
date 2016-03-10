@@ -7,8 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		362375301C19F28100689E57 /* MosaicLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3623752F1C19F28100689E57 /* MosaicLayout.swift */; settings = {ASSET_TAGS = (); }; };
-		363173291C1B4C65008CFE79 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 363173281C1B4C65008CFE79 /* ViewModel.swift */; settings = {ASSET_TAGS = (); }; };
+		362375301C19F28100689E57 /* MosaicLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3623752F1C19F28100689E57 /* MosaicLayout.swift */; };
+		363173291C1B4C65008CFE79 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 363173281C1B4C65008CFE79 /* ViewModel.swift */; };
 		36BB7B9A1C19EF7B00AA2B2C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36BB7B991C19EF7B00AA2B2C /* AppDelegate.swift */; };
 		36BB7B9C1C19EF7B00AA2B2C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36BB7B9B1C19EF7B00AA2B2C /* ViewController.swift */; };
 		36BB7B9F1C19EF7B00AA2B2C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 36BB7B9D1C19EF7B00AA2B2C /* Main.storyboard */; };
@@ -78,12 +78,40 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3621E7291C91CF7F0061A79C /* Tests */ = {
+			isa = PBXGroup;
+			children = (
+				36BB7BB81C19EF7B00AA2B2C /* UITests */,
+				36BB7BAD1C19EF7B00AA2B2C /* UnitTests */,
+			);
+			path = Tests;
+			sourceTree = "<group>";
+		};
+		3621E72A1C91CF910061A79C /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				36BB7BA01C19EF7B00AA2B2C /* Assets.xcassets */,
+				36BB7BA21C19EF7B00AA2B2C /* LaunchScreen.storyboard */,
+				36BB7B9D1C19EF7B00AA2B2C /* Main.storyboard */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		3621E72B1C91CFA30061A79C /* SupportFiles */ = {
+			isa = PBXGroup;
+			children = (
+				36BB7BA51C19EF7B00AA2B2C /* Info.plist */,
+			);
+			path = SupportFiles;
+			sourceTree = "<group>";
+		};
 		36BB7B8D1C19EF7B00AA2B2C = {
 			isa = PBXGroup;
 			children = (
-				36BB7B981C19EF7B00AA2B2C /* MosaicLayout */,
-				36BB7BAD1C19EF7B00AA2B2C /* MosaicLayoutTests */,
-				36BB7BB81C19EF7B00AA2B2C /* MosaicLayoutUITests */,
+				36BB7B981C19EF7B00AA2B2C /* Source */,
+				3621E72A1C91CF910061A79C /* Resources */,
+				3621E7291C91CF7F0061A79C /* Tests */,
+				3621E72B1C91CFA30061A79C /* SupportFiles */,
 				36BB7B971C19EF7B00AA2B2C /* Products */,
 			);
 			sourceTree = "<group>";
@@ -98,37 +126,33 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		36BB7B981C19EF7B00AA2B2C /* MosaicLayout */ = {
+		36BB7B981C19EF7B00AA2B2C /* Source */ = {
 			isa = PBXGroup;
 			children = (
 				36BB7B991C19EF7B00AA2B2C /* AppDelegate.swift */,
 				3623752F1C19F28100689E57 /* MosaicLayout.swift */,
 				36BB7B9B1C19EF7B00AA2B2C /* ViewController.swift */,
 				363173281C1B4C65008CFE79 /* ViewModel.swift */,
-				36BB7B9D1C19EF7B00AA2B2C /* Main.storyboard */,
-				36BB7BA01C19EF7B00AA2B2C /* Assets.xcassets */,
-				36BB7BA21C19EF7B00AA2B2C /* LaunchScreen.storyboard */,
-				36BB7BA51C19EF7B00AA2B2C /* Info.plist */,
 			);
-			path = MosaicLayout;
+			path = Source;
 			sourceTree = "<group>";
 		};
-		36BB7BAD1C19EF7B00AA2B2C /* MosaicLayoutTests */ = {
+		36BB7BAD1C19EF7B00AA2B2C /* UnitTests */ = {
 			isa = PBXGroup;
 			children = (
-				36BB7BAE1C19EF7B00AA2B2C /* MosaicLayoutTests.swift */,
 				36BB7BB01C19EF7B00AA2B2C /* Info.plist */,
+				36BB7BAE1C19EF7B00AA2B2C /* MosaicLayoutTests.swift */,
 			);
-			path = MosaicLayoutTests;
+			path = UnitTests;
 			sourceTree = "<group>";
 		};
-		36BB7BB81C19EF7B00AA2B2C /* MosaicLayoutUITests */ = {
+		36BB7BB81C19EF7B00AA2B2C /* UITests */ = {
 			isa = PBXGroup;
 			children = (
-				36BB7BB91C19EF7B00AA2B2C /* MosaicLayoutUITests.swift */,
 				36BB7BBB1C19EF7B00AA2B2C /* Info.plist */,
+				36BB7BB91C19EF7B00AA2B2C /* MosaicLayoutUITests.swift */,
 			);
-			path = MosaicLayoutUITests;
+			path = UITests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -306,6 +330,7 @@
 				36BB7B9E1C19EF7B00AA2B2C /* Base */,
 			);
 			name = Main.storyboard;
+			path = .;
 			sourceTree = "<group>";
 		};
 		36BB7BA21C19EF7B00AA2B2C /* LaunchScreen.storyboard */ = {
@@ -314,6 +339,7 @@
 				36BB7BA31C19EF7B00AA2B2C /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			path = .;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -433,7 +459,7 @@
 				GCC_WARN_UNKNOWN_PRAGMAS = YES;
 				GCC_WARN_UNUSED_LABEL = YES;
 				GCC_WARN_UNUSED_PARAMETER = YES;
-				INFOPLIST_FILE = MosaicLayout/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/SupportFiles/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.alexisdigital.MosaicLayout;
@@ -472,7 +498,7 @@
 				GCC_WARN_UNKNOWN_PRAGMAS = YES;
 				GCC_WARN_UNUSED_LABEL = YES;
 				GCC_WARN_UNUSED_PARAMETER = YES;
-				INFOPLIST_FILE = MosaicLayout/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/SupportFiles/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.alexisdigital.MosaicLayout;
@@ -484,7 +510,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
-				INFOPLIST_FILE = MosaicLayoutTests/Info.plist;
+				INFOPLIST_FILE = Tests/UnitTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.alexisdigital.MosaicLayoutTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -496,7 +522,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
-				INFOPLIST_FILE = MosaicLayoutTests/Info.plist;
+				INFOPLIST_FILE = Tests/UnitTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.alexisdigital.MosaicLayoutTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -507,7 +533,7 @@
 		36BB7BC51C19EF7B00AA2B2C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				INFOPLIST_FILE = MosaicLayoutUITests/Info.plist;
+				INFOPLIST_FILE = Tests/UITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.alexisdigital.MosaicLayoutUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -519,7 +545,7 @@
 		36BB7BC61C19EF7B00AA2B2C /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				INFOPLIST_FILE = MosaicLayoutUITests/Info.plist;
+				INFOPLIST_FILE = Tests/UITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.alexisdigital.MosaicLayoutUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
