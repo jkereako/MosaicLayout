@@ -31,9 +31,9 @@ class MosaicLayout: UICollectionViewLayout {
     didSet {
       // Allow the property to be reset to zero
       if furthestCellPosition != CGPointZero {
-        furthestCellPosition = CGPointMake(
-          max(furthestCellPosition.x, oldValue.x),
-          max(furthestCellPosition.y, oldValue.y)
+        furthestCellPosition = CGPoint(
+          x: max(furthestCellPosition.x, oldValue.x),
+          y: max(furthestCellPosition.y, oldValue.y)
         )
       }
     }
@@ -77,7 +77,7 @@ class MosaicLayout: UICollectionViewLayout {
   override init() {
     scrollDirection = .Vertical
     preemptivelyRenderLayout = false
-    cellSize = CGSizeMake(100.0, 100.0)
+    cellSize = CGSize(width: 100.0, height: 100.0)
     layoutAttributesCache = [UICollectionViewLayoutAttributes]()
     layoutRectCache = CGRectZero
     indexPathCache = NSIndexPath(forRow: 0, inSection: 0)
@@ -92,7 +92,7 @@ class MosaicLayout: UICollectionViewLayout {
   required init?(coder aDecoder: NSCoder) {
     scrollDirection = .Vertical
     preemptivelyRenderLayout = false
-    cellSize = CGSizeMake(100.0, 100.0)
+    cellSize = CGSize(width: 100.0, height: 100.0)
     layoutAttributesCache = [UICollectionViewLayoutAttributes]()
     layoutRectCache = CGRectZero
     indexPathCache = NSIndexPath(forRow: 0, inSection: 0)
@@ -117,9 +117,13 @@ extension MosaicLayout {
 
     switch scrollDirection {
     case .Vertical:
-      size = CGSizeMake(CGRectGetWidth(contentRect), (furthestCellPosition.y + 1) * cellSize.height)
+      size = CGSize(
+        width: CGRectGetWidth(contentRect), height: (furthestCellPosition.y + 1) * cellSize.height
+      )
     case .Horizontal:
-      size = CGSizeMake((furthestCellPosition.x + 1) * cellSize.width, CGRectGetHeight(contentRect))
+      size = CGSize(
+        width:(furthestCellPosition.x + 1) * cellSize.width, height: CGRectGetHeight(contentRect)
+      )
     }
 
     return size
@@ -164,9 +168,9 @@ extension MosaicLayout {
 
         switch scrollDirection {
         case .Vertical:
-          position = CGPointMake(CGFloat(boundIndex), CGFloat(unboundIndex))
+          position = CGPoint(x: CGFloat(boundIndex), y: CGFloat(unboundIndex))
         case .Horizontal:
-          position = CGPointMake(CGFloat(unboundIndex), CGFloat(boundIndex))
+          position = CGPoint(x: CGFloat(unboundIndex), y: CGFloat(boundIndex))
         }
 
         if let indexPath = self.indexPathForPosition(position),
@@ -210,8 +214,12 @@ extension MosaicLayout {
       return
     }
 
-    let scrollFrame = CGRectMake(
-      cv.contentOffset.x, cv.contentOffset.y, cv.frame.size.width, cv.frame.size.height)
+    let scrollFrame = CGRect(
+      x: cv.contentOffset.x,
+      y: cv.contentOffset.y,
+      width: cv.frame.size.width,
+      height: cv.frame.size.height
+    )
 
     let unboundIndex: Int
     switch scrollDirection {
@@ -282,21 +290,21 @@ extension MosaicLayout {
     case .Vertical:
       let width = CGRectGetWidth(contentRect)
       padding = (width - CGFloat(maximumNumberOfCellsInBounds) * cellSize.width) / 2
-      result = CGRectMake(
-        position.x * cellSize.width + padding,
-        position.y * cellSize.height,
-        aCellSize.width * cellSize.width,
-        aCellSize.height * cellSize.height
+      result = CGRect(
+        x: position.x * cellSize.width + padding,
+        y: position.y * cellSize.height,
+        width: aCellSize.width * cellSize.width,
+        height: aCellSize.height * cellSize.height
       )
 
     case .Horizontal:
       let height = CGRectGetHeight(contentRect)
       padding = (height - CGFloat(maximumNumberOfCellsInBounds) * cellSize.height) / 2
-      result = CGRectMake(
-        position.x * cellSize.width,
-        position.y * cellSize.height + padding,
-        aCellSize.width * cellSize.width,
-        aCellSize.height * cellSize.height
+      result = CGRect(
+        x: position.x * cellSize.width,
+        y: position.y * cellSize.height + padding,
+        width: aCellSize.width * cellSize.width,
+        height: aCellSize.height * cellSize.height
       )
     }
 
@@ -308,9 +316,9 @@ extension MosaicLayout {
       if d.respondsToSelector("collectionView:layout:sizeForItemAtIndexPath:") {
         return d.collectionView(cv, layout: self, sizeForItemAtIndexPath: indexPath)
       }
-    }
+      }
 
-    return CGSizeMake(1.0, 1.0)
+    return CGSize(width: 1.0, height: 1.0)
   }
 
   private func positionForIndexPath(indexPath: NSIndexPath) -> CGPoint {
@@ -409,10 +417,10 @@ extension MosaicLayout {
 
         switch scrollDirection {
         case .Vertical:
-          position = CGPointMake(CGFloat(boundIndex), CGFloat(unboundIndex))
+          position = CGPoint(x: CGFloat(boundIndex), y: CGFloat(unboundIndex))
 
         case .Horizontal:
-          position = CGPointMake(CGFloat(unboundIndex), CGFloat(boundIndex))
+          position = CGPoint(x: CGFloat(unboundIndex), y: CGFloat(boundIndex))
         }
 
 
@@ -482,8 +490,8 @@ extension MosaicLayout {
       unboundIndex++
 
     } while(true)
+    
     //func traverseOpenCells(closure: (position: CGPoint) -> Bool) -> Bool
-
     return !traverseOpenCells({[unowned self] (let cellOrigin: CGPoint) in
 
       let didTraverseAllCells = self.traverseCellsForPosition(
@@ -620,10 +628,10 @@ extension MosaicLayout {
 
         switch scrollDirection {
         case .Vertical:
-          position = CGPointMake(CGFloat(boundIndex), CGFloat(unboundIndex))
+          position = CGPoint(x: CGFloat(boundIndex), y: CGFloat(unboundIndex))
 
         case .Horizontal:
-          position = CGPointMake(CGFloat(unboundIndex), CGFloat(boundIndex))
+          position = CGPoint(x: CGFloat(unboundIndex), y: CGFloat(boundIndex))
         }
 
 
@@ -654,7 +662,7 @@ extension MosaicLayout {
     // O(n^2)
     for column = UInt(position.x); column < UInt(position.x + size.width); column++ {
       for row = UInt(position.y); row < UInt(position.y + size.height); row++ {
-        if !closure(point: CGPointMake(CGFloat(column), CGFloat(row))) {
+        if !closure(point: CGPoint(x: CGFloat(column), y: CGFloat(row))) {
           return false
         }
       }
