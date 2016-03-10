@@ -1,5 +1,5 @@
 # MosaicLayout
-<img src="https://raw.githubusercontent.com/jkereako/MosaicLayout/master/MosaicLayout/screen-shot.png" alt="REFrostedViewController Screenshot" width="320" height="568" />
+<img src="https://raw.githubusercontent.com/jkereako/MosaicLayout/master/Images/screen-shot.png" alt="Screenshot" width="320" height="568" />
 
 This is simply a Swift version of Bryce Redd's RFQuiltLayout.
 
