@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3621E72E1C91D1720061A79C /* MosaicLayoutDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3621E72D1C91D1720061A79C /* MosaicLayoutDelegate.swift */; };
 		362375301C19F28100689E57 /* MosaicLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3623752F1C19F28100689E57 /* MosaicLayout.swift */; };
 		363173291C1B4C65008CFE79 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 363173281C1B4C65008CFE79 /* ViewModel.swift */; };
 		36BB7B9A1C19EF7B00AA2B2C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36BB7B991C19EF7B00AA2B2C /* AppDelegate.swift */; };
@@ -36,6 +37,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3621E72D1C91D1720061A79C /* MosaicLayoutDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MosaicLayoutDelegate.swift; sourceTree = "<group>"; };
 		3623752F1C19F28100689E57 /* MosaicLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MosaicLayout.swift; sourceTree = "<group>"; };
 		363173281C1B4C65008CFE79 /* ViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
 		36BB7B961C19EF7B00AA2B2C /* MosaicLayout.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MosaicLayout.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -105,9 +107,19 @@
 			path = SupportFiles;
 			sourceTree = "<group>";
 		};
+		3621E72C1C91D1560061A79C /* Library */ = {
+			isa = PBXGroup;
+			children = (
+				3623752F1C19F28100689E57 /* MosaicLayout.swift */,
+				3621E72D1C91D1720061A79C /* MosaicLayoutDelegate.swift */,
+			);
+			path = Library;
+			sourceTree = "<group>";
+		};
 		36BB7B8D1C19EF7B00AA2B2C = {
 			isa = PBXGroup;
 			children = (
+				3621E72C1C91D1560061A79C /* Library */,
 				36BB7B981C19EF7B00AA2B2C /* Source */,
 				3621E72A1C91CF910061A79C /* Resources */,
 				3621E7291C91CF7F0061A79C /* Tests */,
@@ -130,7 +142,6 @@
 			isa = PBXGroup;
 			children = (
 				36BB7B991C19EF7B00AA2B2C /* AppDelegate.swift */,
-				3623752F1C19F28100689E57 /* MosaicLayout.swift */,
 				36BB7B9B1C19EF7B00AA2B2C /* ViewController.swift */,
 				363173281C1B4C65008CFE79 /* ViewModel.swift */,
 			);
@@ -285,6 +296,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3621E72E1C91D1720061A79C /* MosaicLayoutDelegate.swift in Sources */,
 				362375301C19F28100689E57 /* MosaicLayout.swift in Sources */,
 				36BB7B9C1C19EF7B00AA2B2C /* ViewController.swift in Sources */,
 				363173291C1B4C65008CFE79 /* ViewModel.swift in Sources */,
