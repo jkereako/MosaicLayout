@@ -12,22 +12,22 @@ class MosaicLayout: UICollectionViewLayout {
   //-- Interface
   weak var delegate: MosaicLayoutDelegate?
 
-  var preemptivelyRenderLayout: Bool
-  var scrollDirection: UICollectionViewScrollDirection {
+  var preemptivelyRenderLayout = false
+  var scrollDirection = UICollectionViewScrollDirection.Vertical{
     didSet {
       invalidateLayout()
     }
   }
 
-  var cellSize: CGSize {
+  var cellSize = CGSize(width: 100.0, height: 100.0) {
     didSet {
       invalidateLayout()
     }
   }
 
   //-- things
-  var firstOpenSpace: CGPoint
-  var furthestCellPosition: CGPoint {
+  var firstOpenSpace = CGPointZero
+  var furthestCellPosition = CGPointZero {
     didSet {
       // Allow the property to be reset to zero
       if furthestCellPosition != CGPointZero {
@@ -40,14 +40,14 @@ class MosaicLayout: UICollectionViewLayout {
   }
 
   // This is a map of integers to dictionaries of integers mapped to index paths
-  var indexPathByPosition: [Int: [Int: NSIndexPath]]
-  var positionByIndexPath: [UInt: [UInt: NSValue]]
+  var indexPathByPosition = [Int: [Int: NSIndexPath]]()
+  var positionByIndexPath = [UInt: [UInt: NSValue]]()
 
   //-- Caching
   // The variables below are used for caching to prevent too much work.
-  var layoutAttributesCache: [UICollectionViewLayoutAttributes]
-  var layoutRectCache: CGRect
-  var indexPathCache: NSIndexPath
+  var layoutAttributesCache = [UICollectionViewLayoutAttributes]()
+  var layoutRectCache = CGRectZero
+  var indexPathCache = NSIndexPath()
 
   var maximumNumberOfCellsInBounds: UInt {
 
@@ -72,36 +72,6 @@ class MosaicLayout: UICollectionViewLayout {
     }
 
     return size
-  }
-
-  override init() {
-    scrollDirection = .Vertical
-    preemptivelyRenderLayout = false
-    cellSize = CGSize(width: 100.0, height: 100.0)
-    layoutAttributesCache = [UICollectionViewLayoutAttributes]()
-    layoutRectCache = CGRectZero
-    indexPathCache = NSIndexPath(forRow: 0, inSection: 0)
-    firstOpenSpace = CGPointZero
-    furthestCellPosition = CGPointZero
-    indexPathByPosition = [Int: [Int: NSIndexPath]]()
-    positionByIndexPath = [UInt: [UInt: NSValue]]()
-
-    super.init()
-  }
-
-  required init?(coder aDecoder: NSCoder) {
-    scrollDirection = .Vertical
-    preemptivelyRenderLayout = false
-    cellSize = CGSize(width: 100.0, height: 100.0)
-    layoutAttributesCache = [UICollectionViewLayoutAttributes]()
-    layoutRectCache = CGRectZero
-    indexPathCache = NSIndexPath(forRow: 0, inSection: 0)
-    firstOpenSpace = CGPointZero
-    furthestCellPosition = CGPointZero
-    indexPathByPosition = [Int: [Int: NSIndexPath]]()
-    positionByIndexPath = [UInt: [UInt: NSValue]]()
-
-    super.init(coder: aDecoder)
   }
 }
 
