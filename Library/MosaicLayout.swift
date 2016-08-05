@@ -78,11 +78,7 @@ class MosaicLayout: UICollectionViewLayout {
 // MARK:- UICollectionView Overrides
 extension MosaicLayout {
   override func collectionViewContentSize() -> CGSize {
-    guard let cv = collectionView else {
-      return CGSizeZero
-    }
-
-    let contentRect = UIEdgeInsetsInsetRect(cv.frame, cv.contentInset)
+    let contentRect = UIEdgeInsetsInsetRect(collectionView!.frame, collectionView!.contentInset)
     let size: CGSize
 
     switch scrollDirection {
@@ -132,10 +128,9 @@ extension MosaicLayout {
     var attributes = Set<UICollectionViewLayoutAttributes>()
 
     // O(n^2)
-  
     for unboundIndex in unboundIndexStart..<unboundIndexEnd {
       for boundIndex in 0..<maximumNumberOfCellsInBounds {
-        var position: CGPoint
+        var position = CGPointZero
 
         switch scrollDirection {
         case .Vertical:
@@ -158,19 +153,14 @@ extension MosaicLayout {
   }
 
   override func layoutAttributesForItemAtIndexPath(indexPath: NSIndexPath) -> UICollectionViewLayoutAttributes? {
-
-    guard let cv = collectionView, let d = delegate else {
-      return nil
-    }
-
     let frame: CGRect
     let attributes: UICollectionViewLayoutAttributes
     var insets = UIEdgeInsetsZero
-
-    if d.respondsToSelector("collectionView:layout:insetsForItemAtIndexPath:") {
-      insets = d.collectionView(cv, layout: self, insetsForItemAtIndexPath: indexPath)
+    
+    if let d = delegate {
+      insets = d.collectionView(collectionView!, layout: self, insetsForItemAtIndexPath: indexPath)
     }
-
+    
     frame = rectForIndexPath(indexPath)
     attributes = UICollectionViewLayoutAttributes(forCellWithIndexPath: indexPath)
     attributes.frame = UIEdgeInsetsInsetRect(frame, insets)
@@ -181,15 +171,11 @@ extension MosaicLayout {
   override func prepareLayout() {
     super.prepareLayout()
 
-    guard delegate != nil, let cv = collectionView else {
-      return
-    }
-
     let scrollFrame = CGRect(
-      x: cv.contentOffset.x,
-      y: cv.contentOffset.y,
-      width: cv.frame.size.width,
-      height: cv.frame.size.height
+      x: collectionView!.contentOffset.x,
+      y: collectionView!.contentOffset.y,
+      width: collectionView!.frame.size.width,
+      height: collectionView!.frame.size.height
     )
 
     let unboundIndex: Int
@@ -201,7 +187,7 @@ extension MosaicLayout {
       unboundIndex = Int((CGRectGetMaxX(scrollFrame) / cellSize.width) + 1)
     }
 
-    if (preemptivelyRenderLayout) {
+    if preemptivelyRenderLayout {
       insertCellsToUnboundIndex(Int.max)
     }
 
@@ -417,16 +403,8 @@ extension MosaicLayout {
   }
 
   private func insertCellsToIndexPath(indexPath: NSIndexPath) {
-    guard let cv = collectionView else {
-      return
-    }
-
-    let sectionCount = cv.numberOfSections()
-
-    for section in indexPathCache.section..<sectionCount {
-      let rowCount = cv.numberOfItemsInSection(section)
-
-      for row in indexPathCache.row + 1..<rowCount {
+    for section in indexPathCache.section..<collectionView!.numberOfSections() {
+      for row in indexPathCache.row + 1..<collectionView!.numberOfItemsInSection(section) {
 
         // Return if we are past the desired row
         if section >= indexPath.section && row > indexPath.row {
