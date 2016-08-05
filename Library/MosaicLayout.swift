@@ -220,21 +220,16 @@ extension MosaicLayout {
     firstOpenSpace = CGPointZero
     indexPathByPosition = [Int: [Int: NSIndexPath]]()
     positionByIndexPath = [UInt: [UInt: CGPoint]]()
-    
   }
 }
 
 // MARK:- Getters
 extension MosaicLayout {
   private func rectForIndexPath(indexPath: NSIndexPath) -> CGRect {
-    guard let cv = collectionView else {
-      return CGRectZero
-    }
-    
     let position = positionForIndexPath(indexPath)
     let aCellSize = sizeForCellAtIndexPath(indexPath)
     let padding: CGFloat
-    let contentRect = UIEdgeInsetsInsetRect(cv.frame, cv.contentInset)
+    let contentRect = UIEdgeInsetsInsetRect(collectionView!.frame, collectionView!.contentInset)
     let result: CGRect
     
     switch scrollDirection {
@@ -271,21 +266,15 @@ extension MosaicLayout {
   }
   
   private func positionForIndexPath(indexPath: NSIndexPath) -> CGPoint {
-    let position: CGPoint
     // Check if the cell has a position
-    if let p = positionByIndexPath[UInt(indexPath.section)]?[UInt(indexPath.row)] {
-      position = p
-      
-    }
-      
-    else {
-      // Make a new position if the position did not exist.
-      insertCellsToIndexPath(indexPath)
-      
-      position = positionByIndexPath[UInt(indexPath.section)]?[UInt(indexPath.row)] ?? CGPointZero
+    if let position = positionByIndexPath[UInt(indexPath.section)]?[UInt(indexPath.row)] {
+      return position
     }
     
-    return position
+    // Make a new position if the position did not exist.
+    insertCellsToIndexPath(indexPath)
+    
+    return positionByIndexPath[UInt(indexPath.section)]?[UInt(indexPath.row)] ?? CGPointZero
   }
   
   private func indexPathForPosition(position: CGPoint) -> NSIndexPath? {
