@@ -9,10 +9,10 @@
 import UIKit
 
 protocol MosaicLayoutDelegate: UICollectionViewDelegate {
-    func collectionView(cv: UICollectionView, layout: UICollectionViewLayout,
-                        sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize
-    
-    func collectionView(cv: UICollectionView,
+    func collectionView(_ cv: UICollectionView, layout: UICollectionViewLayout,
+                        sizeForItemAtIndexPath indexPath: IndexPath) -> CGSize
+
+    func collectionView(_ cv: UICollectionView,
                         layout: UICollectionViewLayout,
-                        insetsForItemAtIndexPath indexPath: NSIndexPath) -> UIEdgeInsets
+                        insetsForItemAtIndexPath indexPath: IndexPath) -> UIEdgeInsets
 }
