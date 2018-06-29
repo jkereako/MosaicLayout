@@ -40,7 +40,7 @@
 		3621E72D1C91D1720061A79C /* MosaicLayoutDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MosaicLayoutDelegate.swift; sourceTree = "<group>"; };
 		3623752F1C19F28100689E57 /* MosaicLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MosaicLayout.swift; sourceTree = "<group>"; usesTabs = 0; };
 		363173281C1B4C65008CFE79 /* ViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
-		36BB7B961C19EF7B00AA2B2C /* MosaicLayout.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MosaicLayout.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		36BB7B961C19EF7B00AA2B2C /* MosaicLayoutApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MosaicLayoutApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		36BB7B991C19EF7B00AA2B2C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		36BB7B9B1C19EF7B00AA2B2C /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		36BB7B9E1C19EF7B00AA2B2C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -131,7 +131,7 @@
 		36BB7B971C19EF7B00AA2B2C /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				36BB7B961C19EF7B00AA2B2C /* MosaicLayout.app */,
+				36BB7B961C19EF7B00AA2B2C /* MosaicLayoutApp.app */,
 				36BB7BAA1C19EF7B00AA2B2C /* MosaicLayoutTests.xctest */,
 				36BB7BB51C19EF7B00AA2B2C /* MosaicLayoutUITests.xctest */,
 			);
@@ -169,9 +169,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		36BB7B951C19EF7B00AA2B2C /* MosaicLayout */ = {
+		36BB7B951C19EF7B00AA2B2C /* MosaicLayoutApp */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 36BB7BBE1C19EF7B00AA2B2C /* Build configuration list for PBXNativeTarget "MosaicLayout" */;
+			buildConfigurationList = 36BB7BBE1C19EF7B00AA2B2C /* Build configuration list for PBXNativeTarget "MosaicLayoutApp" */;
 			buildPhases = (
 				36BB7B921C19EF7B00AA2B2C /* Sources */,
 				36BB7B931C19EF7B00AA2B2C /* Frameworks */,
@@ -181,9 +181,9 @@
 			);
 			dependencies = (
 			);
-			name = MosaicLayout;
+			name = MosaicLayoutApp;
 			productName = MosaicLayout;
-			productReference = 36BB7B961C19EF7B00AA2B2C /* MosaicLayout.app */;
+			productReference = 36BB7B961C19EF7B00AA2B2C /* MosaicLayoutApp.app */;
 			productType = "com.apple.product-type.application";
 		};
 		36BB7BA91C19EF7B00AA2B2C /* MosaicLayoutTests */ = {
@@ -258,7 +258,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				36BB7B951C19EF7B00AA2B2C /* MosaicLayout */,
+				36BB7B951C19EF7B00AA2B2C /* MosaicLayoutApp */,
 				36BB7BA91C19EF7B00AA2B2C /* MosaicLayoutTests */,
 				36BB7BB41C19EF7B00AA2B2C /* MosaicLayoutUITests */,
 			);
@@ -326,12 +326,12 @@
 /* Begin PBXTargetDependency section */
 		36BB7BAC1C19EF7B00AA2B2C /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 36BB7B951C19EF7B00AA2B2C /* MosaicLayout */;
+			target = 36BB7B951C19EF7B00AA2B2C /* MosaicLayoutApp */;
 			targetProxy = 36BB7BAB1C19EF7B00AA2B2C /* PBXContainerItemProxy */;
 		};
 		36BB7BB71C19EF7B00AA2B2C /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 36BB7B951C19EF7B00AA2B2C /* MosaicLayout */;
+			target = 36BB7B951C19EF7B00AA2B2C /* MosaicLayoutApp */;
 			targetProxy = 36BB7BB61C19EF7B00AA2B2C /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -608,7 +608,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		36BB7BBE1C19EF7B00AA2B2C /* Build configuration list for PBXNativeTarget "MosaicLayout" */ = {
+		36BB7BBE1C19EF7B00AA2B2C /* Build configuration list for PBXNativeTarget "MosaicLayoutApp" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				36BB7BBF1C19EF7B00AA2B2C /* Debug */,
