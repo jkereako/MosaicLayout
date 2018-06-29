@@ -8,27 +8,27 @@
 
 import UIKit
 
-class MosaicLayout: UICollectionViewLayout {
+public class MosaicLayout: UICollectionViewLayout {
     //-- Interface
-    weak var delegate: MosaicLayoutDelegate?
+    public weak var delegate: MosaicLayoutDelegate?
 
-    var preemptivelyRenderLayout = false
-    var scrollDirection = UICollectionViewScrollDirection.vertical {
+    public var preemptivelyRenderLayout = false
+    public var scrollDirection = UICollectionViewScrollDirection.vertical {
         didSet {
             invalidateLayout()
         }
     }
 
-    var cellSize = CGSize(width: 100.0, height: 100.0) {
+    public var cellSize = CGSize(width: 100.0, height: 100.0) {
         didSet {
             invalidateLayout()
         }
     }
 
     //-- things
-    var firstOpenSpace = CGPoint.zero
+    public var firstOpenSpace = CGPoint.zero
 
-    var furthestCellPosition = CGPoint.zero {
+    public var furthestCellPosition = CGPoint.zero {
         didSet {
             // Allow the property to be reset to zero
             if (furthestCellPosition != CGPoint.zero) {
@@ -39,16 +39,16 @@ class MosaicLayout: UICollectionViewLayout {
     }
 
     // This is a map of integers to dictionaries of integers mapped to index paths
-    var indexPathByPosition = [Int: [Int: IndexPath]]()
-    var positionByIndexPath = [UInt: [UInt: CGPoint]]()
+    public var indexPathByPosition = [Int: [Int: IndexPath]]()
+    public var positionByIndexPath = [UInt: [UInt: CGPoint]]()
 
     //-- Caching
     // The variables below are used for caching to prevent too much work.
-    var layoutAttributesCache = [UICollectionViewLayoutAttributes]()
-    var layoutRectCache = CGRect.zero
-    var indexPathCache = IndexPath()
+    public var layoutAttributesCache = [UICollectionViewLayoutAttributes]()
+    public var layoutRectCache = CGRect.zero
+    public var indexPathCache = IndexPath()
 
-    var maximumNumberOfCellsInBounds: UInt {
+    public var maximumNumberOfCellsInBounds: UInt {
         var size: UInt = 0;
         let contentRect = UIEdgeInsetsInsetRect(collectionView!.frame, collectionView!.contentInset)
 
@@ -70,8 +70,8 @@ class MosaicLayout: UICollectionViewLayout {
 }
 
 // MARK:- UICollectionView Overrides
-extension MosaicLayout {
-    override var collectionViewContentSize: CGSize {
+public extension MosaicLayout {
+    override public var collectionViewContentSize: CGSize {
         let contentRect = UIEdgeInsetsInsetRect(collectionView!.frame, collectionView!.contentInset)
         let size: CGSize
 
@@ -86,7 +86,7 @@ extension MosaicLayout {
         return size
     }
 
-    override func layoutAttributesForElements(in rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
+    override public func layoutAttributesForElements(in rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
         if rect.equalTo(layoutRectCache) {
             return layoutAttributesCache
         }
@@ -143,7 +143,7 @@ extension MosaicLayout {
         return layoutAttributesCache
     }
 
-    override func layoutAttributesForItem(at indexPath: IndexPath) -> UICollectionViewLayoutAttributes? {
+    override public func layoutAttributesForItem(at indexPath: IndexPath) -> UICollectionViewLayoutAttributes? {
         let frame: CGRect
         let attributes: UICollectionViewLayoutAttributes
         var insets = UIEdgeInsets.zero
@@ -159,7 +159,7 @@ extension MosaicLayout {
         return attributes
     }
 
-    override func prepare() {
+    override public func prepare() {
         super.prepare()
 
         let scrollFrame = CGRect(
@@ -186,7 +186,7 @@ extension MosaicLayout {
         }
     }
 
-    override func prepare(forCollectionViewUpdates updateItems: [UICollectionViewUpdateItem]) {
+    override public func prepare(forCollectionViewUpdates updateItems: [UICollectionViewUpdateItem]) {
         super.prepare(forCollectionViewUpdates: updateItems)
 
         for item in updateItems {
@@ -202,11 +202,11 @@ extension MosaicLayout {
         }
     }
 
-    override func shouldInvalidateLayout(forBoundsChange newBounds: CGRect) -> Bool {
+    override public func shouldInvalidateLayout(forBoundsChange newBounds: CGRect) -> Bool {
         return !(newBounds.size.equalTo(collectionView?.frame.size ?? CGSize.zero))
     }
 
-    override func invalidateLayout() {
+    override public func invalidateLayout() {
         super.invalidateLayout()
 
         indexPathCache = IndexPath(row: 0, section: 0)
@@ -220,8 +220,8 @@ extension MosaicLayout {
 }
 
 // MARK:- Getters
-extension MosaicLayout {
-    fileprivate func rectForIndexPath(_ indexPath: IndexPath) -> CGRect {
+private extension MosaicLayout {
+    func rectForIndexPath(_ indexPath: IndexPath) -> CGRect {
         let position = positionForIndexPath(indexPath)
         let aCellSize = sizeForCellAtIndexPath(indexPath)
         let padding: CGFloat
@@ -253,7 +253,7 @@ extension MosaicLayout {
         return result.integral
     }
 
-    fileprivate func sizeForCellAtIndexPath(_ indexPath: IndexPath) -> CGSize {
+    func sizeForCellAtIndexPath(_ indexPath: IndexPath) -> CGSize {
         if let d = delegate {
             return d.collectionView(collectionView!, layout: self, sizeForItemAtIndexPath: indexPath)
         }
@@ -261,7 +261,7 @@ extension MosaicLayout {
         return CGSize(width: 1.0, height: 1.0)
     }
 
-    fileprivate func positionForIndexPath(_ indexPath: IndexPath) -> CGPoint {
+    func positionForIndexPath(_ indexPath: IndexPath) -> CGPoint {
         // Check if the cell has a position
         if let position = positionByIndexPath[UInt(indexPath.section)]?[UInt(indexPath.row)] {
             return position
@@ -273,7 +273,7 @@ extension MosaicLayout {
         return positionByIndexPath[UInt(indexPath.section)]?[UInt(indexPath.row)] ?? CGPoint.zero
     }
 
-    fileprivate func indexPathForPosition(_ position: CGPoint) -> IndexPath? {
+    func indexPathForPosition(_ position: CGPoint) -> IndexPath? {
         let unboundIndex, boundIndex: Int
 
         switch scrollDirection {
@@ -291,8 +291,8 @@ extension MosaicLayout {
 }
 
 // MARK:- Setters
-extension MosaicLayout {
-    fileprivate func setPosition(_ position: CGPoint, forIndexPath indexPath: IndexPath) {
+private extension MosaicLayout {
+    func setPosition(_ position: CGPoint, forIndexPath indexPath: IndexPath) {
         let unboundIndex, boundIndex: Int
 
         switch scrollDirection {
@@ -312,7 +312,7 @@ extension MosaicLayout {
         indexPathByPosition[boundIndex]![unboundIndex] = indexPath
     }
 
-    fileprivate func setIndexPath(_ indexPath: IndexPath, forPosition position: CGPoint) {
+    func setIndexPath(_ indexPath: IndexPath, forPosition position: CGPoint) {
         if positionByIndexPath[UInt(indexPath.section)] == nil {
             positionByIndexPath[UInt(indexPath.section)] = [UInt: CGPoint]()
         }
@@ -322,8 +322,8 @@ extension MosaicLayout {
 }
 
 // MARK:- Cell insertion
-extension MosaicLayout {
-    fileprivate func insertCellAtIndexPath(_ indexPath: IndexPath) -> Bool {
+private extension MosaicLayout {
+    func insertCellAtIndexPath(_ indexPath: IndexPath) -> Bool {
         let aCellSize = sizeForCellAtIndexPath(indexPath)
 
         return !traverseOpenCells({
@@ -378,7 +378,7 @@ extension MosaicLayout {
         })
     }
 
-    fileprivate func insertCellsToIndexPath(_ indexPath: IndexPath) {
+    func insertCellsToIndexPath(_ indexPath: IndexPath) {
         for section in indexPathCache.section..<collectionView!.numberOfSections {
             for row in indexPathCache.row + 1..<collectionView!.numberOfItems(inSection: section) {
                 // Return if we are past the desired row
@@ -395,7 +395,7 @@ extension MosaicLayout {
         }
     }
 
-    fileprivate func insertCellsToUnboundIndex(_ unboundIndex: Int) {
+    func insertCellsToUnboundIndex(_ unboundIndex: Int) {
         let sectionCount = collectionView?.numberOfSections ?? 0
 
         //for var aRow = row + 1; row < rows; ++aRow
@@ -431,8 +431,8 @@ extension MosaicLayout {
 }
 
 //MARK:- Cell traversal
-extension MosaicLayout {
-    fileprivate func traverseOpenCells(_ closure: (_ position: CGPoint) -> Bool) -> Bool {
+private extension MosaicLayout {
+    func traverseOpenCells(_ closure: (_ position: CGPoint) -> Bool) -> Bool {
         var allTakenBefore = true
         var unboundIndex: UInt
 
@@ -476,7 +476,7 @@ extension MosaicLayout {
         } while(true)
     }
 
-    fileprivate func traverseCellsForPosition(_ position: CGPoint, withSize size: CGSize, closure: (_ point: CGPoint) -> Bool) -> Bool {
+    func traverseCellsForPosition(_ position: CGPoint, withSize size: CGSize, closure: (_ point: CGPoint) -> Bool) -> Bool {
         // O(n^2)
         for column in UInt(position.x)..<UInt(position.x + size.width) {
             for row in UInt(position.y)..<UInt(position.y + size.height) {

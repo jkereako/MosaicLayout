@@ -8,7 +8,7 @@
 
 import UIKit
 
-protocol MosaicLayoutDelegate: UICollectionViewDelegate {
+public protocol MosaicLayoutDelegate: UICollectionViewDelegate {
     func collectionView(_ cv: UICollectionView, layout: UICollectionViewLayout,
                         sizeForItemAtIndexPath indexPath: IndexPath) -> CGSize
 
