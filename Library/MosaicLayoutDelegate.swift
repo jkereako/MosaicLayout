@@ -8,11 +8,11 @@
 
 import UIKit
 
-protocol MosaicLayoutDelegate: UICollectionViewDelegate {
-  func collectionView(cv: UICollectionView, layout: UICollectionViewLayout,
-    sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize
+public protocol MosaicLayoutDelegate: UICollectionViewDelegate {
+    func collectionView(_ cv: UICollectionView, layout: UICollectionViewLayout,
+                        sizeForItemAtIndexPath indexPath: IndexPath) -> CGSize
 
-  func collectionView(cv: UICollectionView,
-    layout: UICollectionViewLayout,
-    insetsForItemAtIndexPath indexPath: NSIndexPath) -> UIEdgeInsets
+    func collectionView(_ cv: UICollectionView,
+                        layout: UICollectionViewLayout,
+                        insetsForItemAtIndexPath indexPath: IndexPath) -> UIEdgeInsets
 }
